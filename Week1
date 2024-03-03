@@ -1,1 +1,38 @@
+#Q1
+# Function to count vowels in a word
+def count_vowels(word):
+    # Define a set of vowels
+    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+    # Initialize a counter for vowels
+    vowel_count = 0
+    # Iterate through each character in the word
+    for char in word:
+        # If the character is a vowel, increment the vowel count
+        if char in vowels:
+            vowel_count += 1
+            
+    return vowel_count
+word = input("Enter a word: ")
+print("Number of vowels:", count_vowels(word))
+
+#Q2
+# List of animals
+animals = ['tiger', 'elephant', 'monkey', 'zebra', 'panther']
+# Print each animal in all caps
+for animal in animals:
+    print(animal.upper())
+#Q3
+# Print numbers from 1 to 20 and whether they are odd or even
+for i in range(1, 21):
+    if i % 2 == 0:
+        print(f"{i} is even")
+    else:
+        print(f"{i} is odd")
+#Q4
+# Function to sum two integers
+def sum_of_integers(a, b):
+    return a + b
+x = int(input("Enter the first integer: "))
+y = int(input("Enter the second integer: "))
+print("Sum:", sum_of_integers(x, y))
 
