@@ -1,0 +1,31 @@
+1. To control for biases in research or analysis, various methods can be employed:
+   - Randomization: Randomly assigning subjects to groups or treatments can help reduce bias by ensuring that each group is similar on average.
+   - Blinding: Keeping participants, researchers, or analysts unaware of certain information, such as treatment assignments or study hypotheses, can prevent bias from influencing outcomes.
+   - Stratification: Ensuring that different strata of the population are represented proportionally in the sample can help control for biases related to specific demographic factors.
+   - Sensitivity analysis: Testing the robustness of results to different assumptions or methods can help identify and mitigate biases.
+
+2. Confounding variables are extraneous factors that correlate with both the independent variable and the dependent variable in a study. They can distort the apparent relationship between the variables of interest, leading to erroneous conclusions. Controlling for confounding variables through study design or statistical methods is essential to accurately assess the true relationship between variables.
+
+3. A/B testing, also known as split testing, is a method used to compare two versions of something to determine which one performs better. It is commonly used in marketing, web design, and product development. In A/B testing, two versions (A and B) are compared by randomly assigning users or subjects to either version and then measuring their response to each version. The version that yields better results in terms of a predefined metric (such as conversion rate or user engagement) is typically chosen for implementation.
+
+4. The Welch t-test is used to compare the means of two independent samples when the assumptions of the standard t-test (equal variances and normally distributed data) are violated. It is particularly useful when the sample sizes and variances of the two groups being compared are unequal. The Welch t-test provides a more accurate assessment of statistical significance in such cases.
+
+5. Let's conduct a hypothesis test for the average time spent on the phone per call:
+   - Null hypothesis (H0): The average time spent on the phone per call is 6 minutes.
+   - Alternative hypothesis (H1): The average time spent on the phone per call is greater than 6 minutes.
+   - Given sample mean (x̄) = 6.5 minutes, sample size (n) = 50, sample standard deviation (s) = 1.2 minutes, and significance level (α) = 0.05.
+   - We'll conduct a one-sample t-test since we're comparing the sample mean to a known population mean.
+   - Calculate the t-statistic: \( t = \frac{{\bar{x} - \mu}}{{s/\sqrt{n}}} \)
+   - Calculate degrees of freedom (df) using n-1.
+   - Compare the calculated t-value to the critical t-value at α = 0.05 and df.
+   - If the calculated t-value exceeds the critical t-value, we reject the null hypothesis and conclude that there is sufficient evidence to support the claim that the average time spent on the phone per call is higher than 6 minutes.
+
+6. Let's conduct a hypothesis test for the difference in mean scores between Group A and Group B:
+   - Null hypothesis (H0): There is no significant difference in the mean scores between Group A and Group B.
+   - Alternative hypothesis (H1): There is a significant difference in the mean scores between Group A and Group B.
+   - Given sample mean (x̄A) = 75, sample standard deviation (sA) = 8, sample size (nA) = 25 for Group A, and sample mean (x̄B) = 78, sample standard deviation (sB) = 7, sample size (nB) = 30 for Group B, and significance level (α) = 0.05.
+   - We'll conduct an independent samples t-test.
+   - Calculate the pooled standard deviation: \( s_p = \sqrt{\frac{{(n_A - 1)s_A^2 + (n_B - 1)s_B^2}}{{n_A + n_B - 2}}} \)
+   - Calculate the t-statistic: \( t = \frac{{\bar{x}_A - \bar{x}_B}}{{s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}}}} \)
+   - Compare the calculated t-value to the critical t-value at α = 0.05 and degrees of freedom (calculated using the pooled standard deviation).
+   - If the calculated t-value exceeds the critical t-value, we reject the null hypothesis and conclude that there is a significant difference in the mean scores between Group A and Group B.
