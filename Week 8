@@ -1,0 +1,94 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.preprocessing import StandardScaler
+
+# Load the dataset from GitHub
+url = "https://raw.githubusercontent.com/<username>/<repository>/<branch>/glass.csv"
+data = pd.read_csv(url)
+
+# Step 1: Threshold Analysis with 'Al' Column
+def threshold_analysis(column_name):
+    # Split the data into features and target
+    X = data.drop(columns=['Type'])
+    y = data['Type']
+
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Preprocess the data - Normalize features
+    scaler = StandardScaler()
+    X_train_normalized = scaler.fit_transform(X_train)
+    X_test_normalized = scaler.transform(X_test)
+
+    # Fit a Logistic Regression model on the specified column
+    model = LogisticRegression()
+    model.fit(X_train_normalized, y_train)
+
+    # Compute probabilities for the specified column
+    probs = model.predict_proba(X_test_normalized)
+    predictions = probs[:, 1]  # Predict probabilities for class 1
+
+    # Evaluate the model with default threshold (0.5)
+    accuracy_default = accuracy_score(y_test, predictions > 0.5)
+    precision_default = precision_score(y_test, predictions > 0.5)
+    recall_default = recall_score(y_test, predictions > 0.5)
+
+    # Display metrics with default threshold
+    print("Metrics with default threshold (0.5) for column '{}':".format(column_name))
+    print("Accuracy:", accuracy_default)
+    print("Precision:", precision_default)
+    print("Recall:", recall_default)
+    print()
+
+    # Experiment with different thresholds
+    thresholds = [0.4, 0.45, 0.5, 0.55, 0.6]  # Example thresholds to try
+    for threshold in thresholds:
+        predictions_thresholded = predictions > threshold
+        accuracy = accuracy_score(y_test, predictions_thresholded)
+        precision = precision_score(y_test, predictions_thresholded)
+        recall = recall_score(y_test, predictions_thresholded)
+        print("Metrics with threshold {:.2f}:".format(threshold))
+        print("Accuracy:", accuracy)
+        print("Precision:", precision)
+        print("Recall:", recall)
+        print()
+
+# Perform threshold analysis for 'Al' column
+threshold_analysis('Al')
+
+# Step 2: Extend Analysis to Other Columns
+columns_to_analyze = ['Mg', 'Si', 'K']  # Example columns to analyze
+for column in columns_to_analyze:
+    threshold_analysis(column)
+
+# Step 3: Fit a Logistic Regression Model on all features
+# Split the data into features and target
+X = data.drop(columns=['Type'])
+y = data['Type']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Preprocess the data - Normalize features
+scaler = StandardScaler()
+X_train_normalized = scaler.fit_transform(X_train)
+X_test_normalized = scaler.transform(X_test)
+
+# Fit a Logistic Regression model on all features
+model = LogisticRegression()
+model.fit(X_train_normalized, y_train)
+
+# Predict and evaluate the model
+predictions = model.predict(X_test_normalized)
+accuracy = accuracy_score(y_test, predictions)
+precision = precision_score(y_test, predictions, average='weighted')
+recall = recall_score(y_test, predictions, average='weighted')
+
+print("Metrics for Logistic Regression Model on all features:")
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
